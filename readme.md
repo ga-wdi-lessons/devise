@@ -108,9 +108,31 @@ $ rake db:migrate
 ```
 
 ```rb
-app/controllers/posts_controller
+# app/controllers/posts_controller
 
 def create
   Post.create(post_params.merge(user: current_user))
 end
 ```
+
+>notice: no need to update strong_params - this could be bad, actually!
+
+## Limiting User Abilities
+
+```rb
+# app/controllers/posts_controller
+
+def destroy
+  @post = Post.find(params[:id])
+  if @post.user == current_user
+    @post.destroy
+  else
+    flash[:alert] = "Only the author of the post can delete"
+  end
+  redirect_to posts_path
+end
+```
+
+## Bonus!
+
+If you need more fine-grained control over user permissions, check out [CanCanCan](https://github.com/CanCanCommunity/cancancan)
