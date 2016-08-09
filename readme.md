@@ -12,7 +12,7 @@
 $ git clone https://github.com/ga-wdi-exercises/scribble.git
 $ cd scribble
 $ git checkout pre-devise
-$ rake db:create db:migrate db:seed
+$ rake db:drop db:create db:migrate db:seed
 ```
 
 ## Devise
