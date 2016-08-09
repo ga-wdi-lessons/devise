@@ -19,6 +19,7 @@ $ rake db:create db:migrate db:seed
 
 Devise is a gem that simplifies implementing user authentication. - https://github.com/plataformatec/devise#starting-with-rails
 
+
 ### Install Dependencies
 
 ```
@@ -52,10 +53,7 @@ Seriously, commit now. It will be easy to fix any devise issues if you have a co
 ```
 $ rails g devise User
 ```
-
-> But what if I already have a User model?
-
-That's ok!
+If you have an existing User model, Devise should build on the functionality. But, if you're getting migration errors, it may be easier to recreate the model using Devise and add your functionality back.
 
 ### Run migrations
 
@@ -71,7 +69,7 @@ $ rails s
 <%= link_to "Sign Up", new_user_registration_path %>
 ```
 
->btw. I got this path from `$ rake routes`
+>btw. I got this path, provided by Devise, from `$ rake routes`
 
 ### Link to Sign Up only if not signed in
 
@@ -81,12 +79,26 @@ $ rails s
   <%= link_to "Sign Up", new_user_registration_path %>
 <% end %>
 ```
+>current_user is a helper method provided by Devise to get the user from the session. Another helper method you can use to check if a user is signed in is the self-explanatory user_signed_in?.
 
-### You do:
+### I do:
 
 If the user is logged in, show link to log out, including the user's email.
 
 Otherwise, show both a link to sign up and sign in.
+
+
+```erb
+<!-- app/views/layouts/application.html.erb -->
+<% if !current_user %>
+  <%= link_to "Sign up", new_user_registration_path %>
+  <%= link_to "Sign in", new_user_session_path %>
+<% else %>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <%= current_user.email %>
+<% end %>
+```
+>The delete method needs to be specified. Get is the default for the link_to helper.
 
 ### Associating Posts with a User
 
@@ -111,7 +123,8 @@ $ rake db:migrate
 # app/controllers/posts_controller
 
 def create
-  Post.create(post_params.merge(user: current_user))
+  @post = Post.create!(post_params.merge(user: current_user))
+  redirect_to post_path(@post)
 end
 ```
 
