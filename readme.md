@@ -12,13 +12,17 @@
 $ git clone https://github.com/ga-wdi-exercises/scribble.git
 $ cd scribble
 $ git checkout pre-devise
-$ rake db:drop db:create db:migrate db:seed
+$ rails db:drop db:create db:migrate db:seed
+$ rails s
 ```
 
 ## Devise
 
 Devise is a gem that simplifies implementing user authentication. - https://github.com/plataformatec/devise#starting-with-rails
 
+While it's interesting to know what's happening under the hood when authenticating a user, it's very unlikely
+you'll implement your own authentication mechanism in any future project. Devise is a well-tested open source
+authentication solution for rails.
 
 ### Install Dependencies
 
@@ -58,7 +62,7 @@ If you have an existing User model, Devise should build on the functionality. Bu
 ### Run migrations
 
 ```
-$ rake db:migrate
+$ rails db:migrate
 $ rails s
 ```
 
@@ -69,7 +73,7 @@ $ rails s
 <%= link_to "Sign Up", new_user_registration_path %>
 ```
 
->btw. I got this path, provided by Devise, from `$ rake routes`
+>btw. I got this path, provided by Devise, from `$ rails routes`
 
 ### Link to Sign Up only if not signed in
 
