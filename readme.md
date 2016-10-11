@@ -48,6 +48,16 @@ For example:
 <p class="alert"><%= alert %></p>
 ```
 
+<details>
+<summary>When working with devise, what do you think might show up inside a flash message?</summary>
+
+<ul>
+<li>Whether the user has signed in or out successfully</li>
+<li>Whether the password is correct/incorrect</li>
+<li>Whether the username is taken</li>
+</ul>
+</details>
+
 ### Commit!
 
 Seriously, commit now. It will be easy to fix any devise issues if you have a commit you can go back to.
@@ -57,7 +67,7 @@ Seriously, commit now. It will be easy to fix any devise issues if you have a co
 ```
 $ rails g devise User
 ```
-If you have an existing User model, Devise should build on the functionality. But, if you're getting migration errors, it may be easier to recreate the model using Devise and add your functionality back.
+If you have an existing User model, Devise _should_ build on the functionality. But, if you're getting migration errors, it may be easier to recreate the model using Devise and add your functionality back.
 
 ### Run migrations
 
@@ -73,7 +83,7 @@ $ rails s
 <%= link_to "Sign Up", new_user_registration_path %>
 ```
 
->btw. I got this path, provided by Devise, from `$ rails routes`
+>`new_user_registration_path` provided by Devise - from `$ rails routes`
 
 ### Link to Sign Up only if not signed in
 
@@ -85,12 +95,14 @@ $ rails s
 ```
 >current_user is a helper method provided by Devise to get the user from the session. Another helper method you can use to check if a user is signed in is the self-explanatory user_signed_in?.
 
-### I do:
+### You do (5 mins):
 
 If the user is logged in, show link to log out, including the user's email.
 
 Otherwise, show both a link to sign up and sign in.
 
+<details>
+<summary>Solution</summary>
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
@@ -102,9 +114,20 @@ Otherwise, show both a link to sign up and sign in.
     <%= current_user.email %>
 <% end %>
 ```
->The delete method needs to be specified. Get is the default for the link_to helper.
 
-### Associating Posts with a User
+>The delete method needs to be specified. Get is the default for the link_to helper.
+</details>
+
+### You do: Associate Posts with a User (10 mins)
+
+Modify your `User` and `Post` classes so that a user has many
+posts and a post belongs to a user.
+
+Create a few seeds to verify you did this part correctly.
+
+
+<details>
+<summary>Solution</summary>
 
 ```rb
 # app/models/user
@@ -123,6 +146,10 @@ $ rails g migration add_users_to_posts user:references
 $ rake db:migrate
 ```
 
+</details>
+
+## We do: Update the Controller
+
 ```rb
 # app/controllers/posts_controller
 
@@ -133,6 +160,8 @@ end
 ```
 
 >notice: no need to update strong_params - this could be bad, actually!
+
+[`merge`](https://ruby-doc.org/core-2.2.0/Hash.html#method-i-merge) is a built-in ruby method for combining two hashes.
 
 ## Limiting User Abilities
 
@@ -149,6 +178,30 @@ def destroy
   redirect_to posts_path
 end
 ```
+
+## You do: Prevent Users from editing someone else's post.
+
+## You do: Associate users with Comments
+
+1. Create a new migration to add a user_id column to comments.
+2. Associate the `current_user` with newly created posts.
+3. Prevent User's from editing / deleting other's comments.
+
+## Customizing Views
+
+Devise has generated several views for us, but they are not currently visible in our
+codebase.
+
+If you want to customize them, generate the views with `rails g devise:views`
+
+The possibilities are endless!
+
+### Styling views
+
+Whether you generated the views or not, you can style the forms the same way.
+
+Identify the selectors you'd use to target the individual form elements, and add
+styles in `app/assets/stylesheets/application.css`
 
 ## Bonus!
 
