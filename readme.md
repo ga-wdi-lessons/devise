@@ -203,6 +203,6 @@ Whether you generated the views or not, you can style the forms the same way.
 Identify the selectors you'd use to target the individual form elements, and add
 styles in `app/assets/stylesheets/application.css`
 
-## Bonus!
+## If there's time...
 
-If you need more fine-grained control over user permissions, check out [CanCanCan](https://github.com/CanCanCommunity/cancancan)
+Try implementing an authorization solution on top of devise - https://github.com/ga-wdi-lessons/cancancan
