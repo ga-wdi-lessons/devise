@@ -24,6 +24,34 @@ While it's interesting to know what's happening under the hood when authenticati
 you'll implement your own authentication mechanism in any future project. Devise is a well-tested open source
 authentication solution for rails.
 
+In yesterday's lesson, passwords were stored in the database in plaintext.
+
+<details>
+<summary>Why might storing passwords in the database be a bad idea?</summary>
+
+- We might get hacked
+- Some users have the same password for every service (not me)
+- http://plaintextoffenders.com/faq/devs
+
+</details>
+
+<details>
+<summary>What are the alternatives to storing passwords in plaintext?</summary>
+
+- Hashing
+- Encryption
+</details>
+
+### You do: SO Hunt
+
+Read this question and answer on Stack Overflow - http://stackoverflow.com/questions/4948322/fundamental-difference-between-hashing-and-encryption-algorithms
+
+Prepare to answer the following questions:
+
+- What is the difference between encryption and hashing?
+- When would you choose one over the other?
+- Which one should be used for passwords?
+
 ### Install Dependencies
 
 ```
@@ -67,7 +95,14 @@ Seriously, commit now. It will be easy to fix any devise issues if you have a co
 ```
 $ rails g devise User
 ```
-If you have an existing User model, Devise _should_ build on the functionality. But, if you're getting migration errors, it may be easier to recreate the model using Devise and add your functionality back.
+
+>If you have an existing User model, Devise should build on the functionality. But, if you're getting migration errors, it may be easier to recreate the model using Devise and add your functionality back.
+
+### You do: Check it out!
+
+- What did the previous command generate?
+- What files did running the previous command change?
+- What is the output of `rails routes`
 
 ### Run migrations
 
