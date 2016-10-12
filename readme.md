@@ -3,8 +3,9 @@
 ## Learning Objectives
 
 - Implement user authentication
-- `merge` two hashes to associate user
+- `merge` two hashes to associate the user model
 - Use devise helper methods
+- Explain the difference between encryption and hashing algorithms
 
 ## Setup
 
