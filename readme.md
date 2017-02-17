@@ -4,7 +4,7 @@
 
 - Implement user authentication
 - `merge` two hashes to associate the user model
-- Use devise helper methods
+- Use Devise helper methods
 - Explain the difference between encryption and hashing algorithms
 
 ## Setup
@@ -42,9 +42,9 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 </details>
 
-### You Do: StackOverflow Hunt
+### You Do: Stack Overflow Hunt
 
-Read [this question](http://stackoverflow.com/questions/4948322/fundamental-difference-between-hashing-and-encryption-algorithms) and answer on StackOverflow.
+Read [this question](http://stackoverflow.com/questions/4948322/fundamental-difference-between-hashing-and-encryption-algorithms) and answer on Stack Overflow.
 
 Prepare to answer the following questions...
 - What is the difference between encryption and hashing?
@@ -78,7 +78,7 @@ For example:
 ```
 
 <details>
-  <summary>When working with devise, what do you think might show up inside a flash message?</summary>
+  <summary>When working with Devise, what do you think might show up inside a flash message?</summary>
 
   - Whether the user has signed in or out successfully
   - Whether the password is correct/incorrect
