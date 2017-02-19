@@ -78,7 +78,7 @@ For example:
 ```
 
 <details>
-  <summary>When working with Devise, what do you think might show up inside a flash message?</summary>
+  <summary><strong>When working with Devise, what do you think might show up inside a flash message?</strong></summary>
 
   - Whether the user has signed in or out successfully
   - Whether the password is correct/incorrect
@@ -130,7 +130,7 @@ $ rails s
 ```
 > `current_user` is a helper method provided by Devise to get the user from the session. Another helper method you can use to check if a user is signed in is the self-explanatory user_signed_in?.
 
-### You Do
+### You Do: "Log Out" Link
 
 <!-- AM: Show example of this -->
 
@@ -188,6 +188,10 @@ Create a few seeds to verify you did this part correctly.
 
 ## We Do: Update the Controller
 
+<!-- AM: Need some more copy here, esp. explaining how merge works. -->
+<!-- AM: Show equivalent code they already understand. -->
+<!-- AM: Also say WHY we would use merge. -->
+
 ```rb
 # app/controllers/posts_controller
 
@@ -202,6 +206,8 @@ end
 [`merge`](https://ruby-doc.org/core-2.2.0/Hash.html#method-i-merge) is a built-in ruby method for combining two hashes.
 
 ## Limiting User Abilities
+
+<!-- AM: Need some copy here. -->
 
 ```rb
 # app/controllers/posts_controller
@@ -218,6 +224,8 @@ end
 ```
 
 ## You Do: Prevent Users From Editing Someone Else's Post
+
+<!-- AM: There's nothing in here. -->
 
 ## You Do: Associate Users With Comments
 
