@@ -42,16 +42,16 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 </details>
 
-### You Do: Stack Overflow Hunt
+## You Do: Stack Overflow Hunt
 
-Read [this question](http://stackoverflow.com/questions/4948322/fundamental-difference-between-hashing-and-encryption-algorithms) and answer on Stack Overflow.
+Read through the question and answers in [this Stack Overflow post](http://stackoverflow.com/questions/4948322/fundamental-difference-between-hashing-and-encryption-algorithms).
 
 Prepare to answer the following questions...
 - What is the difference between encryption and hashing?
 - When would you choose one over the other?
 - Which one should be used for passwords?
 
-### Install Dependencies
+## Installing Devise
 
 ```
 # Gemfile
@@ -90,7 +90,7 @@ For example:
 
 Seriously, commit now. It will be easy to fix any devise issues if you have a commit you can go back to.
 
-### Generate User model
+### You Do: Generate User model
 
 ```
 $ rails g devise User
@@ -98,8 +98,7 @@ $ rails g devise User
 
 > If you have an existing User model, Devise should build on the functionality. But, if you're getting migration errors, it may be easier to recreate the model using Devise and add your functionality back.
 
-### You Do: Check It Out!
-
+Once you've done that, look through your application and answer the following questions...
 - What did the previous command generate?
 - What files did running the previous command change?
 - What is the output of `rails routes`?
@@ -113,6 +112,8 @@ $ rails s
 
 ### Link to "Sign Up" Page
 
+<!-- AM: Need some copy here. -->
+
 ```erb
 <!-- app/views/layouts/application.html.erb -->
 <%= link_to "Sign Up", new_user_registration_path %>
@@ -121,6 +122,8 @@ $ rails s
 >`new_user_registration_path` provided by Devise - from `$ rails routes`
 
 ### Link to "Sign Up" Only If Not Signed In
+
+<!-- AM: Need some copy here. -->
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
@@ -186,7 +189,7 @@ Create a few seeds to verify you did this part correctly.
 
 </details>
 
-## We Do: Update the Controller
+### We Do: Update the Controller
 
 <!-- AM: Need some more copy here, esp. explaining how merge works. -->
 <!-- AM: Show equivalent code they already understand. -->
@@ -205,7 +208,7 @@ end
 
 [`merge`](https://ruby-doc.org/core-2.2.0/Hash.html#method-i-merge) is a built-in ruby method for combining two hashes.
 
-## Limiting User Abilities
+### Limiting User Abilities
 
 <!-- AM: Need some copy here. -->
 
@@ -223,15 +226,19 @@ def destroy
 end
 ```
 
-## You Do: Prevent Users From Editing Someone Else's Post
+### You Do: Prevent Users From Editing Someone Else's Post
 
 <!-- AM: There's nothing in here. -->
 
-## You Do: Associate Users With Comments
+### You Do: Associate Users With Comments
 
 1. Create a new migration to add a user_id column to comments
 - Associate the `current_user` with newly created posts
 - Prevent User's from editing / deleting other's comments
+
+## Closing / Questions
+
+------------
 
 ## Customizing Views
 
