@@ -7,7 +7,7 @@
 - Use Devise helper methods
 - Explain the difference between encryption and hashing algorithms
 
-## Setup
+## Setup (5 minutes / 0:05)
 
 ```
 $ git clone https://github.com/ga-wdi-exercises/scribble.git
@@ -17,7 +17,7 @@ $ rails db:drop db:create db:migrate db:seed
 $ rails s
 ```
 
-## Devise
+## Devise (5 minutes / 0:10)
 
 [Devise](https://github.com/plataformatec/devise#starting-with-rails) is a gem that simplifies implementing user authentication.
 
@@ -29,7 +29,7 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
   <summary><strong>Why might storing passwords in the database be a bad idea?</strong></summary>
 
   - We might get hacked
-  - Some users have the same password for every service (not me)
+  - Some users have the same password for every service
   - [Plain Text Offenders](http://plaintextoffenders.com/faq/devs)
 
 </details>
@@ -42,7 +42,11 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 </details>
 
-## You Do: Stack Overflow Hunt
+## You Do: Stack Overflow Hunt (10 minutes / 0:20)
+
+<!-- AM: Is this enough time? Is this the best resources for them to read? -->
+
+> 5 minutes exercise. 5 minutes review.
 
 Read through the question and answers in [this Stack Overflow post](http://stackoverflow.com/questions/4948322/fundamental-difference-between-hashing-and-encryption-algorithms).
 
@@ -51,22 +55,24 @@ Prepare to answer the following questions...
 - When would you choose one over the other?
 - Which one should be used for passwords?
 
-## Installing Devise
+<!-- AM: Include some answers -->
 
-```
+## Installing Devise (5 minutes / 0:25)
+
+In order to use Devise, we must include it in our Gemfile...
+
+```rb
 # Gemfile
 
 gem "devise"
 ```
 
-```
+```bash
 $ bundle install
 $ rails g devise:install
 ```
 
-<!-- AM: Show what the output is -->
-
-From the output of the previous command, let's make sure we do #3 only...
+Of the instructions listed in the resulting output, we only need to do the third item.
 
 ```
  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
@@ -90,9 +96,15 @@ For example:
 
 Seriously, commit now. It will be easy to fix any devise issues if you have a commit you can go back to.
 
-### You Do: Generate User model
+### You Do: Generate User Model (10 minutes / 0:35)
 
-```
+> 5 minutes exercise. 5 minutes review.
+
+In the User, Sessions & Flash lesson, you set up a User model manually. When using Devise, you should take advantage of its built in model generation functionality.
+
+Run this in the command line...
+
+```bash
 $ rails g devise User
 ```
 
@@ -105,25 +117,33 @@ Once you've done that, look through your application and answer the following qu
 
 ### Run Migrations
 
-```
+The above command generated some model and migration files. It did not, however, run said migrations. Let's do that now.
+
+```bash
 $ rails db:migrate
 $ rails s
 ```
 
-### Link to "Sign Up" Page
+### Link to "Sign Up" Page (5 minutes / 0:40)
 
-<!-- AM: Need some copy here. -->
+While Devise does a lot of leg work for us, we need to go into our views and make sure we provide users with the option to create a Scribble account.
+
+Let's add a link to do that in `app/views/layouts/application.html.erb`...
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
 <%= link_to "Sign Up", new_user_registration_path %>
 ```
 
->`new_user_registration_path` provided by Devise - from `$ rails routes`
+> Where did that `new_user_registration_path` path helper come from? Devise.
+>
+> If you want to look at what other path helpers Devise has generated for us, run `rails routes` in the Terminal.
 
-### Link to "Sign Up" Only If Not Signed In
+### Link to "Sign Up" Only If Not Signed In (5 minutes / 0:45)
 
-<!-- AM: Need some copy here. -->
+<!-- AM: Could use more on current_user -->
+
+We don't want a user to see the "Sign Up" link if they're already signed in. What logic can we implement in our layout file to prevent this from happening?
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
@@ -133,13 +153,15 @@ $ rails s
 ```
 > `current_user` is a helper method provided by Devise to get the user from the session. Another helper method you can use to check if a user is signed in is the self-explanatory user_signed_in?.
 
-### You Do: "Log Out" Link
+### You Do: "Log Out" Link (15 minutes / 1:00)
 
-<!-- AM: Show example of this -->
+> 10 minutes exercise. 5 minutes review.
 
 If the user is logged in, show a link to log out. The link should display the user's email right next to it.
 
 Otherwise, show both a link to sign up and sign in.
+
+> Where should we be directing the "Log Out" link? `rails routes` will be very helpful in answering that question.
 
 <details>
   <summary><strong>Solution...</strong></summary>
@@ -159,7 +181,11 @@ Otherwise, show both a link to sign up and sign in.
 
 </details>
 
-### You Do: Associate Posts with a User
+### Break (10 minutes / 1:10)
+
+### You Do: Associate Posts with a User (10 minutes / 1:20)
+
+> 5 minutes exercise. 5 minutes review.
 
 Modify your `User` and `Post` classes so that...
 - A user has many posts
@@ -171,49 +197,64 @@ Create a few seeds to verify you did this part correctly.
   <summary><strong>Solution...</strong></summary>
 
   ```rb
-  # app/models/user
+  # app/models/user.rb
 
   has_many :posts
   ```
 
   ```rb
-  # app/models/post
+  # app/models/post.rb
 
   belongs_to :user
   ```
 
   ```
   $ rails g migration add_users_to_posts user:references
-  $ rake db:migrate
+  $ rails db:migrate
   ```
 
 </details>
 
-### We Do: Update the Controller
+### We Do: Update the Controller (10 minutes / 1:30)
 
-<!-- AM: Need some more copy here, esp. explaining how merge works. -->
-<!-- AM: Show equivalent code they already understand. -->
-<!-- AM: Also say WHY we would use merge. -->
+Now let's make use of these associations. In particular, let's make it so that when a user creates a post, that post is automatically associated with that user.
+
+There are a couple ways of doing this.
+
+One is to leverage the `current_user` method we encountered before.
 
 ```rb
-# app/controllers/posts_controller
+# app/controllers/posts_controller.rb
+
+def create
+  current_user.posts.create!(post_params)
+  redirect_to post_path(@post)
+end
+```
+> Remember: `current_user` returns an instance of the logged-in user.
+
+The other is to make use of Ruby's `[.merge](https://ruby-doc.org/core-2.2.0/Hash.html#method-i-merge)` method, which combines two hashes into one.
+
+```rb
+# app/controllers/posts_controller.rb
 
 def create
   @post = Post.create!(post_params.merge(user: current_user))
   redirect_to post_path(@post)
 end
 ```
+> `post_params` and `{user: current_user}` are both hashes. Together, they contain all of the information we would like a post to have.
 
-> You do not need to modify `strong_params`
+Note that we did not have to modify strong params in either option.
 
-[`merge`](https://ruby-doc.org/core-2.2.0/Hash.html#method-i-merge) is a built-in ruby method for combining two hashes.
+### Limiting User Abilities (5 minutes / 1:35)
 
-### Limiting User Abilities
+Right now our users have free reign over Scribble. Let's limit their permissions. First, we'll prevent a user from being able to delete somebody else's post.
 
-<!-- AM: Need some copy here. -->
+First let's add some logic to our posts controller's `destroy` action so that, if a user tries to delete a different user's post, they see an error flash message.
 
 ```rb
-# app/controllers/posts_controller
+# app/controllers/posts_controller.rb
 
 def destroy
   @post = Post.find(params[:id])
@@ -226,17 +267,48 @@ def destroy
 end
 ```
 
-### You Do: Prevent Users From Editing Someone Else's Post
+This is nice, but it'd be better if they didn't see the delete link in the first place...
 
-<!-- AM: There's nothing in here. -->
+### You Do: Prevent Users From Deleting & Editing Someone Else's Post (15 minutes / 1:50)
 
-### You Do: Associate Users With Comments
+> 10 minutes exercise. 5 minutes review.
+
+Start by making it so that a user cannot see the "Delete" link for a post they did not create themselves.
+
+Now do the same thing with edit functionality, making sure to modify the appropriate controller(s) and view(s).
+
+<details>
+  <summary><strong>Solution...</strong></summary>
+
+  ```rb
+  def edit
+    @post = Post.find(params[:id])
+    if @post.user == current_user
+      @post.destroy
+    else
+      flash[:alert] = "Only the author of the post can delete"
+    end
+    redirect_to posts_path
+  end
+  ```
+
+</details>
+
+### Break (10 minutes / 2:00)
+
+### You Do: Associate Users With Comments (20 minutes / 2:20)
+
+> 15 minutes exercise. 5 minutes review.
 
 1. Create a new migration to add a user_id column to comments
 - Associate the `current_user` with newly created posts
 - Prevent User's from editing / deleting other's comments
 
 ## Closing / Questions
+
+## Want More Practice?
+
+Implement Devise in Scribble. Make sure, however, to work on it on a separate branch and merge it to `master` when you're ready.
 
 ------------
 
