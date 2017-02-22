@@ -7,7 +7,7 @@
 - Use Devise helper methods
 - Explain the difference between encryption and hashing algorithms
 
-## Devise (5 minutes / 0:10)
+## Devise (5 minutes / 0:05)
 
 [Devise](https://github.com/plataformatec/devise#starting-with-rails) is a gem that simplifies implementing user authentication.
 
@@ -32,7 +32,7 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 </details>
 
-## You Do: Stack Overflow Hunt (10 minutes / 0:20)
+## You Do: Stack Overflow Hunt (10 minutes / 0:15)
 
 > 5 minutes exercise. 5 minutes review.
 
@@ -68,7 +68,7 @@ Prepare to answer the following questions...
 > - [Encoding vs. Encryption vs. Hashing vs. Obfuscation](https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/#gs.7lUOAZI)
 > - [What are salted hashes more secure for password storage?](http://security.stackexchange.com/questions/51959/why-are-salted-hashes-more-secure-for-password-storage)
 
-## Setup (5 minutes / 0:05)
+## Setup (5 minutes / 0:20)
 
 ```
 $ git clone https://github.com/ga-wdi-exercises/scribble.git
