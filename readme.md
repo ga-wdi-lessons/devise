@@ -325,10 +325,6 @@ Now do the same thing with edit functionality, making sure to modify the appropr
 
 ## Closing / Questions
 
-## Want More Practice?
-
-Implement Devise in Scribble. Make sure, however, to work on it on a separate branch and merge it to `master` when you're ready.
-
 ------------
 
 ## Customizing Views
