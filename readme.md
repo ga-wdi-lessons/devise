@@ -7,16 +7,6 @@
 - Use Devise helper methods
 - Explain the difference between encryption and hashing algorithms
 
-## Setup (5 minutes / 0:05)
-
-```
-$ git clone https://github.com/ga-wdi-exercises/scribble.git
-$ cd scribble
-$ git checkout pre-devise
-$ rails db:drop db:create db:migrate db:seed
-$ rails s
-```
-
 ## Devise (5 minutes / 0:10)
 
 [Devise](https://github.com/plataformatec/devise#starting-with-rails) is a gem that simplifies implementing user authentication.
