@@ -44,18 +44,41 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 ## You Do: Stack Overflow Hunt (10 minutes / 0:20)
 
-<!-- AM: Is this enough time? Is this the best resource for them to read? -->
-
 > 5 minutes exercise. 5 minutes review.
 
-Read through the question and answers in [this Stack Overflow post](http://stackoverflow.com/questions/4948322/fundamental-difference-between-hashing-and-encryption-algorithms).
+Read through the question and answers in [this Stack Overflow post](http://www.securityinnovationeurope.com/blog/whats-the-difference-between-hashing-and-encrypting).
 
 Prepare to answer the following questions...
-- What is the difference between encryption and hashing?
-- When would you choose one over the other?
-- Which one should be used for passwords?
 
-<!-- AM: Include some answers -->
+<details>
+  <summary><strong>What is the difference between encryption and hashing?</strong></summary>
+
+  > **Encryption** takes a string and, using a key/algorithm, converts it to another string of variable length. The key/algorithm can be used to revert -- or "decrypt" -- the new string back to the original. In other words, it is a two-way process.
+
+</details>
+
+<details>
+  <summary><strong>What is the difference between encryption and hashing?</strong></summary>
+
+  > **Encryption** takes a string and, using a key/algorithm, converts it to another string of variable length. The key/algorithm can be used to revert -- or "decrypt" -- the new string back to the original. In other words, it is a two-way process.
+  >
+  > **Hashing** is similar to encryption in that it converts a string to a different one using an algorithm. It cannot, however, be reverted back to the original, making it a one-way process.
+
+</details>
+
+<details>
+  <summary><strong>When would you choose one over the other?</strong></summary>
+
+  > Encryption should only be used if somebody or something needs to see the original string.
+
+</details>
+
+<details>
+  <summary><strong>Which one should be used for passwords?</strong></summary>
+
+  > **Hashing**. For security reasons, there is no need to store or gain access to the original password. All an application needs to do is to take in a password attempt, pass it through the hashing algorithm and see if it matches with the hash generated when the particular user signed for an account with an app.
+
+</details>
 
 ## Installing Devise (5 minutes / 0:25)
 
