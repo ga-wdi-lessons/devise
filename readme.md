@@ -172,7 +172,7 @@ We don't want a user to see the "Sign Up" link if they're already signed in. Wha
 ```
 > `current_user` is a helper method provided by Devise to get the user from the session. Another helper method you can use to check if a user is signed in is the self-explanatory user_signed_in?.
 
-### You Do: "Log Out" Link (15 minutes / 1:00)
+### You Do: "Sign In" and "Log Out" Links (15 minutes / 1:00)
 
 > 10 minutes exercise. 5 minutes review.
 
@@ -180,7 +180,7 @@ If the user is logged in, show a link to log out. The link should display the us
 
 Otherwise, show both a link to sign up and sign in.
 
-> Where should we be directing the "Log Out" link? `rails routes` will be very helpful in answering that question.
+> Where should we be directing the "Sign In" and Log Out" links? `rails routes` will be very helpful in answering that question.
 
 <details>
   <summary><strong>Solution...</strong></summary>
