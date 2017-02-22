@@ -42,11 +42,6 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 </details>
 
-> Some more resources...
->
-> - [Encoding vs. Encryption vs. Hashing vs. Obfuscation](https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/#gs.7lUOAZI)
-> - [What are salted hashes more secure for password storage?](http://security.stackexchange.com/questions/51959/why-are-salted-hashes-more-secure-for-password-storage)
-
 ## You Do: Stack Overflow Hunt (10 minutes / 0:20)
 
 > 5 minutes exercise. 5 minutes review.
@@ -54,13 +49,6 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 Read through the question and answers in [this Stack Overflow post](http://www.securityinnovationeurope.com/blog/whats-the-difference-between-hashing-and-encrypting).
 
 Prepare to answer the following questions...
-
-<details>
-  <summary><strong>What is the difference between encryption and hashing?</strong></summary>
-
-  > **Encryption** takes a string and, using a key/algorithm, converts it to another string of variable length. The key/algorithm can be used to revert -- or "decrypt" -- the new string back to the original. In other words, it is a two-way process.
-
-</details>
 
 <details>
   <summary><strong>What is the difference between encryption and hashing?</strong></summary>
@@ -84,6 +72,11 @@ Prepare to answer the following questions...
   > **Hashing**. For security reasons, there is no need to store or gain access to the original password. All an application needs to do is to take in a password attempt, pass it through the hashing algorithm and see if it matches with the hash generated when the particular user signed for an account with an app.
 
 </details>
+
+> Some more resources...
+>
+> - [Encoding vs. Encryption vs. Hashing vs. Obfuscation](https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/#gs.7lUOAZI)
+> - [What are salted hashes more secure for password storage?](http://security.stackexchange.com/questions/51959/why-are-salted-hashes-more-secure-for-password-storage)
 
 ## Installing Devise (5 minutes / 0:25)
 
