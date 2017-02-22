@@ -32,11 +32,11 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 </details>
 
-## You Do: Stack Overflow Hunt (10 minutes / 0:15)
+## You Do: Hashing vs. Encryption (10 minutes / 0:15)
 
 > 5 minutes exercise. 5 minutes review.
 
-Read through the question and answers in [this Stack Overflow post](http://www.securityinnovationeurope.com/blog/whats-the-difference-between-hashing-and-encrypting).
+Read through the question and answers in [this blog post](http://www.securityinnovationeurope.com/blog/whats-the-difference-between-hashing-and-encrypting).
 
 Prepare to answer the following questions...
 
