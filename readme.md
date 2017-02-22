@@ -44,7 +44,7 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 ## You Do: Stack Overflow Hunt (10 minutes / 0:20)
 
-<!-- AM: Is this enough time? Is this the best resources for them to read? -->
+<!-- AM: Is this enough time? Is this the best resource for them to read? -->
 
 > 5 minutes exercise. 5 minutes review.
 
