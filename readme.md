@@ -78,6 +78,16 @@ Prepare to answer the following questions...
 > - [Encoding vs. Encryption vs. Hashing vs. Obfuscation](https://danielmiessler.com/study/encoding-encryption-hashing-obfuscation/#gs.7lUOAZI)
 > - [What are salted hashes more secure for password storage?](http://security.stackexchange.com/questions/51959/why-are-salted-hashes-more-secure-for-password-storage)
 
+## Setup (5 minutes / 0:05)
+
+```
+$ git clone https://github.com/ga-wdi-exercises/scribble.git
+$ cd scribble
+$ git checkout pre-devise
+$ rails db:drop db:create db:migrate db:seed
+$ rails s
+```
+
 ## Installing Devise (5 minutes / 0:25)
 
 In order to use Devise, we must include it in our Gemfile...
