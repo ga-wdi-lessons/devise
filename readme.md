@@ -164,8 +164,6 @@ Let's add a link to do that in `app/views/layouts/application.html.erb`...
 
 ### Link to "Sign Up" Only If Not Signed In (5 minutes / 0:45)
 
-<!-- AM: Could use more on current_user -->
-
 We don't want a user to see the "Sign Up" link if they're already signed in. What logic can we implement in our layout file to prevent this from happening?
 
 ```erb
