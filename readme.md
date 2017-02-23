@@ -345,7 +345,7 @@ codebase.
 
 If you want to customize them, generate the views with `rails g devise:views`
 
-### Styling Views
+#### Styling Views
 
 Whether you generated the views or not, you can style the forms the same way.
 
