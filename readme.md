@@ -200,6 +200,16 @@ Otherwise, show both a link to sign up and sign in.
 
 </details>
 
+### Force "Sign Up" / "Log In"
+
+Right now Scribble will let a non-user (i.e., somebody who is not signed in) create a post on the app. Let's prevent that from happening and force anybody visiting our site to sign up or log in prior to interacting with it. We can do that by adding one line to `application_controller.rb`...
+
+```rb
+# application_controller.rb
+
+before_action :authenticate_user!
+```
+
 ### Break (10 minutes / 1:10)
 
 ### You Do: Associate Posts with a User (10 minutes / 1:20)
