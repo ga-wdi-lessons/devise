@@ -262,7 +262,7 @@ end
 ```
 > Remember: `current_user` returns an instance of the logged-in user.
 
-The other is to make use of Ruby's `[.merge](https://ruby-doc.org/core-2.2.0/Hash.html#method-i-merge)` method, which combines two hashes into one.
+The other is to make use of Ruby's **[.merge](https://ruby-doc.org/core-2.2.0/Hash.html#method-i-merge)** method, which combines two hashes into one.
 
 ```rb
 # app/controllers/posts_controller.rb
