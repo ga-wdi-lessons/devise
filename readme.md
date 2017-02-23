@@ -36,7 +36,7 @@ In yesterday's lesson, passwords were stored in the database in plaintext.
 
 > 5 minutes exercise. 5 minutes review.
 
-Read through the question and answers in [this blog post](http://www.securityinnovationeurope.com/blog/whats-the-difference-between-hashing-and-encrypting).
+Read through [this blog post](http://www.securityinnovationeurope.com/blog/whats-the-difference-between-hashing-and-encrypting).
 
 Prepare to answer the following questions...
 
