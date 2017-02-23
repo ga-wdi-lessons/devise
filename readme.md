@@ -200,6 +200,8 @@ Otherwise, show both a link to sign up and sign in.
 
 </details>
 
+> If you finish early, give the [Devise readme](https://github.com/plataformatec/devise) a look-through. There are some interesting commands and methods available to us that we will not be going over in the scope of this lesson.
+
 ### Force "Sign Up" / "Log In"
 
 Right now Scribble will let a non-user (i.e., somebody who is not signed in) create a post on the app. Let's prevent that from happening and force anybody visiting our site to sign up or log in prior to interacting with it. We can do that by adding one line to `application_controller.rb`...
