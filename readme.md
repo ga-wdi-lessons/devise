@@ -239,7 +239,18 @@ Create a few seeds to verify you did this part correctly.
   ```
 
   ```
-  $ rails g migration add_users_to_posts user:references
+  $ rails g migration add_users_to_posts
+  ```
+
+  ```rb
+  class AddUsersToPosts < ActiveRecord::Migration[5.0]
+    def change
+      add_reference :posts, :user, foreign_key: true
+    end
+  end
+  ```
+
+  ```
   $ rails db:migrate
   ```
 
