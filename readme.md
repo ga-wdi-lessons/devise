@@ -75,7 +75,6 @@ $ git clone https://github.com/ga-wdi-exercises/scribble.git
 $ cd scribble
 $ git checkout pre-devise
 $ rails db:drop db:create db:migrate db:seed
-$ rails s
 ```
 
 ## Installing Devise (5 minutes / 0:25)
