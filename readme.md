@@ -246,7 +246,7 @@ One is to leverage the `current_user` method we encountered before.
 # app/controllers/posts_controller.rb
 
 def create
-  current_user.posts.create!(post_params)
+  @post = current_user.posts.create!(post_params)
   redirect_to post_path(@post)
 end
 ```
