@@ -121,7 +121,7 @@ Seriously, commit now. It will be easy to fix any devise issues if you have a co
 
 > 5 minutes exercise. 5 minutes review.
 
-In the User, Sessions & Flash lesson, you set up a User model manually. When using Devise, you should take advantage of its built in model generation functionality.
+In the Users, Sessions & Flash lesson, you built on a hand-rolled User model. When using Devise, you should take advantage of its built in model generation functionality.
 
 Run this in the command line...
 
