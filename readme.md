@@ -341,6 +341,10 @@ Whether you generated the views or not, you can style the forms the same way.
 Identify the selectors you would use to target the individual form elements, and add
 styles in `app/assets/stylesheets/application.css`
 
-## If There's Time...
+## User Authorization
 
-Try implementing an authorization solution on top of Devise using [CanCanCan](https://github.com/ga-wdi-lessons/cancancan)
+Want to take user permissions to the next level? Try implementing an authorization solution on top of Devise using [CanCanCan](https://github.com/ga-wdi-lessons/cancancan)
+
+## OAuthg and Third Party Login
+
+Most modern web applications allow you to sign in using a social network like Facebook, Twitter or Github. [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-configure-devise-and-omniauth-for-your-rails-application) is a great introduction to how Devise can be used to implement that functionality. While it is written with hosting service Digital Ocean in mind, it also recommends other gems in case you would like users to be able to sign in with an alternate service.
