@@ -13,13 +13,14 @@
 
 While it's interesting to know what's happening under the hood when authenticating a user, it's very unlikely you'll implement your own authentication mechanism in any future project. Devise is a well-tested open source authentication solution for rails.
 
-In yesterday's lesson, passwords were stored in the database in plaintext.
+The official documentation recommends several guides on how to go about implementing authorization from scratch in the [documentation](https://github.com/plataformatec/devise#starting-with-rails).
+
+Along with providing helper methods around authorization. Devise takes care of making sure that passwords are properly stored in our database (i.e. not in plain text).
 
 <details>
   <summary><strong>Why might storing passwords in the database be a bad idea?</strong></summary>
 
-  - We might get hacked
-  - Some users have the same password for every service
+  - Because of password reuse, if an attacker were to get access to our database, other accounts of our users may be threatened.
   - [Plain Text Offenders](http://plaintextoffenders.com/faq/devs)
 
 </details>
@@ -120,9 +121,7 @@ Seriously, commit now. It will be easy to fix any devise issues if you have a co
 
 > 5 minutes exercise. 5 minutes review.
 
-In the Users, Sessions & Flash lesson, you built on a hand-rolled User model. When using Devise, you should take advantage of its built in model generation functionality.
-
-Run this in the command line...
+Devise can generate a model for us with the following command...
 
 ```bash
 $ rails g devise User
@@ -342,8 +341,8 @@ Now do the same thing with edit functionality, making sure to modify the appropr
 > 15 minutes exercise. 5 minutes review.
 
 1. Create a new migration to add a user_id column to comments
-- Associate the `current_user` with newly created posts
-- Prevent User's from editing / deleting other's comments
+1. Associate the `current_user` with newly created posts
+1. Prevent User's from editing / deleting other's comments
 
 ## Closing / Questions
 
