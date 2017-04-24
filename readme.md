@@ -15,7 +15,7 @@ While it's interesting to know what's happening under the hood when authenticati
 
 The official documentation recommends several guides on how to go about implementing authorization from scratch in the [documentation](https://github.com/plataformatec/devise#starting-with-rails).
 
-Along with providing helper methods around authorization. Devise takes care of making sure that passwords are properly stored in our database (i.e. not in plain text).
+Along with providing helper methods around authorization, Devise takes care of making sure that passwords are properly stored in our database (i.e. not in plain text).
 
 <details>
   <summary><strong>Why might storing passwords in the database be a bad idea?</strong></summary>
