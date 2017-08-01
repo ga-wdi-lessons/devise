@@ -2,7 +2,7 @@
 
 ## Learning Objectives
 
-- Implement user authentication
+- Implement user authentication using Devise
 - `merge` two hashes to associate the user model
 - Use Devise helper methods
 - Explain the difference between encryption and hashing algorithms
@@ -11,9 +11,7 @@
 
 [Devise](https://github.com/plataformatec/devise#starting-with-rails) is a gem that simplifies implementing user authentication.
 
-While it's interesting to know what's happening under the hood when authenticating a user, it's very unlikely you'll implement your own authentication mechanism in any future project. Devise is a well-tested open source authentication solution for rails.
-
-The official documentation recommends several guides on how to go about implementing authorization from scratch in the [documentation](https://github.com/plataformatec/devise#starting-with-rails).
+While it's interesting to know what's happening under the hood when authenticating a user, it's very unlikely you'll implement your own authentication mechanism in any future project. Devise is a well-tested open source authentication solution for Rails.
 
 Along with providing helper methods around authorization, Devise takes care of making sure that passwords are properly stored in our database (i.e. not in plain text).
 
@@ -32,6 +30,8 @@ Along with providing helper methods around authorization, Devise takes care of m
   - Encryption
 
 </details>
+
+> Note: If you are interested in learning about building user authentication from scratch, the [Devise documentation](https://github.com/plataformatec/devise#starting-with-rails) has links to many useful guides.
 
 ## You Do: Hashing vs. Encryption (10 minutes / 0:15)
 
@@ -216,11 +216,17 @@ before_action :authenticate_user!
 
 > 5 minutes exercise. 5 minutes review.
 
-Modify your `User` and `Post` classes so that...
-- A user has many posts
-- A post belongs to a user.
+1. Modify your `User` and `Post` models so that...
+    - A user has many posts
+    - A post belongs to a user.  
 
-Create a few seeds to verify you did this part correctly.
+
+2. Create a migration to add a reference to `user` on your `posts` table.
+    - Check out the [add_reference](https://apidock.com/rails/v4.0.2/ActiveRecord/ConnectionAdapters/SchemaStatements/add_reference) method
+
+
+3. Update `seeds.rb` to create a `User` and associate each `Post` with them. Then, ensure
+you can run `rails db:seed` without errors.
 
 <details>
   <summary><strong>Solution...</strong></summary>
@@ -228,7 +234,7 @@ Create a few seeds to verify you did this part correctly.
   ```rb
   # app/models/user.rb
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
   ```
 
   ```rb
@@ -251,6 +257,32 @@ Create a few seeds to verify you did this part correctly.
 
   ```
   $ rails db:migrate
+  ```
+
+  ```rb
+  # In seeds.rb
+  User.destroy_all
+Post.destroy_all
+Comment.destroy_all
+
+andy = User.create(email: 'andrew.whitley@generalassemb.ly', password: 'password')
+
+posts = andy.posts.create([
+  {title:"The Medieval Fourier Transform", body: "Four loko bespoke knausgaard kinfolk dreamcatcher. Authentic bitters drinking vinegar portland mustache, mumblecore gluten-free vegan cred chicharrones keytar. Retro ethical authentic occupy. Kinfolk readymade skateboard, truffaut cold-pressed asymmetrical small batch. Franzen authentic ethical truffaut. Before they sold out jean shorts kale chips authentic, franzen yr readymade cornhole. Pickled truffaut chambray polaroid cray.  Distillery brooklyn waistcoat bicycle rights yr small batch. Cold-pressed readymade bushwick celiac, taxidermy offal everyday carry. Raw denim deep v chia normcore, farm-to-table tattooed listicle lo-fi whatever swag tote bag roof party cardigan mustache. Mixtape VHS williamsburg occupy, four loko vinyl echo park cred marfa you probably haven't heard of them tilde church-key cronut. Distillery lo-fi venmo, meh truffaut deep v paleo gentrify. Tousled selfies disrupt PBR&B, XOXO jean shorts selvage neutra flexitarian. Squid meggings hashtag kogi meditation kale chips, flexitarian knausgaard hoodie portland ramps.  Banh mi chillwave plaid polaroid. Single-origin coffee salvia humblebrag franzen lumbersexual XOXO tousled, dreamcatcher locavore. Selfies fap cliche, flannel before they sold out pour-over roof party squid narwhal selvage lo-fi chillwave meditation. Beard dreamcatcher meditation, pinterest iPhone photo booth plaid cronut austin gastropub. Direct trade pinterest butcher, meggings disrupt gluten-free pop-up authentic listicle ennui. Truffaut godard pitchfork, 3 wolf moon biodiesel viral celiac tousled pickled shoreditch. Marfa portland squid iPhone banh mi mixtape, food truck pickled street art flexitarian wolf schlitz paleo.  Poutine selvage keffiyeh gastropub. Authentic typewriter street art, photo booth shabby chic schlitz yr locavore tumblr beard pork belly PBR&B. Celiac kombucha meh, neutra etsy cold-pressed cray cardigan tousled occupy butcher. Cred gentrify distillery flannel polaroid vegan. Cornhole four dollar toast listicle semiotics retro kickstarter, roof party meditation selfies everyday carry cardigan williamsburg next level. Street art austin kombucha, offal tousled cred before they sold out butcher echo park tilde. Cronut cardigan locavore, selvage scenester kinfolk ennui slow-carb wolf."},
+  {title:"Type classes and generic derivation", body: "Four loko bespoke knausgaard kinfolk dreamcatcher. Authentic bitters drinking vinegar portland mustache, mumblecore gluten-free vegan cred chicharrones keytar. Retro ethical authentic occupy. Kinfolk readymade skateboard, truffaut cold-pressed asymmetrical small batch. Franzen authentic ethical truffaut. Before they sold out jean shorts kale chips authentic, franzen yr readymade cornhole. Pickled truffaut chambray polaroid cray.  Distillery brooklyn waistcoat bicycle rights yr small batch. Cold-pressed readymade bushwick celiac, taxidermy offal everyday carry. Raw denim deep v chia normcore, farm-to-table tattooed listicle lo-fi whatever swag tote bag roof party cardigan mustache. Mixtape VHS williamsburg occupy, four loko vinyl echo park cred marfa you probably haven't heard of them tilde church-key cronut. Distillery lo-fi venmo, meh truffaut deep v paleo gentrify. Tousled selfies disrupt PBR&B, XOXO jean shorts selvage neutra flexitarian. Squid meggings hashtag kogi meditation kale chips, flexitarian knausgaard hoodie portland ramps.  Banh mi chillwave plaid polaroid. Single-origin coffee salvia humblebrag franzen lumbersexual XOXO tousled, dreamcatcher locavore. Selfies fap cliche, flannel before they sold out pour-over roof party squid narwhal selvage lo-fi chillwave meditation. Beard dreamcatcher meditation, pinterest iPhone photo booth plaid cronut austin gastropub. Direct trade pinterest butcher, meggings disrupt gluten-free pop-up authentic listicle ennui. Truffaut godard pitchfork, 3 wolf moon biodiesel viral celiac tousled pickled shoreditch. Marfa portland squid iPhone banh mi mixtape, food truck pickled street art flexitarian wolf schlitz paleo.  Poutine selvage keffiyeh gastropub. Authentic typewriter street art, photo booth shabby chic schlitz yr locavore tumblr beard pork belly PBR&B. Celiac kombucha meh, neutra etsy cold-pressed cray cardigan tousled occupy butcher. Cred gentrify distillery flannel polaroid vegan. Cornhole four dollar toast listicle semiotics retro kickstarter, roof party meditation selfies everyday carry cardigan williamsburg next level. Street art austin kombucha, offal tousled cred before they sold out butcher echo park tilde. Cronut cardigan locavore, selvage scenester kinfolk ennui slow-carb wolf."},
+  {title:"Big Data’s Radical Potential", body: "Four loko bespoke knausgaard kinfolk dreamcatcher. Authentic bitters drinking vinegar portland mustache, mumblecore gluten-free vegan cred chicharrones keytar. Retro ethical authentic occupy. Kinfolk readymade skateboard, truffaut cold-pressed asymmetrical small batch. Franzen authentic ethical truffaut. Before they sold out jean shorts kale chips authentic, franzen yr readymade cornhole. Pickled truffaut chambray polaroid cray.  Distillery brooklyn waistcoat bicycle rights yr small batch. Cold-pressed readymade bushwick celiac, taxidermy offal everyday carry. Raw denim deep v chia normcore, farm-to-table tattooed listicle lo-fi whatever swag tote bag roof party cardigan mustache. Mixtape VHS williamsburg occupy, four loko vinyl echo park cred marfa you probably haven't heard of them tilde church-key cronut. Distillery lo-fi venmo, meh truffaut deep v paleo gentrify. Tousled selfies disrupt PBR&B, XOXO jean shorts selvage neutra flexitarian. Squid meggings hashtag kogi meditation kale chips, flexitarian knausgaard hoodie portland ramps.  Banh mi chillwave plaid polaroid. Single-origin coffee salvia humblebrag franzen lumbersexual XOXO tousled, dreamcatcher locavore. Selfies fap cliche, flannel before they sold out pour-over roof party squid narwhal selvage lo-fi chillwave meditation. Beard dreamcatcher meditation, pinterest iPhone photo booth plaid cronut austin gastropub. Direct trade pinterest butcher, meggings disrupt gluten-free pop-up authentic listicle ennui. Truffaut godard pitchfork, 3 wolf moon biodiesel viral celiac tousled pickled shoreditch. Marfa portland squid iPhone banh mi mixtape, food truck pickled street art flexitarian wolf schlitz paleo.  Poutine selvage keffiyeh gastropub. Authentic typewriter street art, photo booth shabby chic schlitz yr locavore tumblr beard pork belly PBR&B. Celiac kombucha meh, neutra etsy cold-pressed cray cardigan tousled occupy butcher. Cred gentrify distillery flannel polaroid vegan. Cornhole four dollar toast listicle semiotics retro kickstarter, roof party meditation selfies everyday carry cardigan williamsburg next level. Street art austin kombucha, offal tousled cred before they sold out butcher echo park tilde. Cronut cardigan locavore, selvage scenester kinfolk ennui slow-carb wolf."}
+])
+
+comments = Comment.create([
+  {body:"The first comment on the first post", post: posts[0]},
+  {body:"The first comment on the second post", post: posts[1]},
+  {body:"The first comment on the third post", post: posts[2]}
+])
+
+  ```
+
+  ```
+  rails db:seed
   ```
 
 </details>
@@ -323,13 +355,22 @@ Now do the same thing with edit functionality, making sure to modify the appropr
   ```rb
   def edit
     @post = Post.find(params[:id])
-    if @post.user == current_user
-      @post.destroy
-    else
-      flash[:alert] = "Only the author of the post can delete"
+    if @post.user != current_user
+      flash[:alert] = "Only the author of the post can edit"
+      redirect_to post_path(@post)
     end
-    redirect_to posts_path
   end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.user === current_user
+      @post.update(post_params)
+    else
+      flash[:alert] = "Only the author of the post can edit"
+    end
+    redirect_to post_path(@post)
+  end
+
   ```
 
 </details>
@@ -341,7 +382,7 @@ Now do the same thing with edit functionality, making sure to modify the appropr
 > 15 minutes exercise. 5 minutes review.
 
 1. Create a new migration to add a user_id column to comments
-1. Associate the `current_user` with newly created posts
+1. Associate the `current_user` with newly created comments
 1. Prevent User's from editing / deleting other's comments
 
 ## Closing / Questions
