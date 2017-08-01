@@ -2,10 +2,12 @@
 
 ## Learning Objectives
 
-- Implement user authentication using Devise
-- `merge` two hashes to associate the user model
-- Use Devise helper methods
+- Explain how Devise helps us implement user authentication
 - Explain the difference between encryption and hashing algorithms
+- Use Devise to create a `User` model
+- Associate the `User` model with other models in our app
+- Use Devise helper methods to track which user is logged-in
+- Control user abilities to CRUD based on model associations
 
 ## Devise (5 minutes / 0:05)
 
@@ -75,6 +77,7 @@ Prepare to answer the following questions...
 $ git clone https://github.com/ga-wdi-exercises/scribble.git
 $ cd scribble
 $ git checkout pre-devise
+$ bundle install
 $ rails db:drop db:create db:migrate db:seed
 ```
 
